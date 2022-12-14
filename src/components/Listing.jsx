@@ -1,8 +1,6 @@
 import React from 'react'
 
 export const Listing = ({items}) => {
-  const truncate = (input) =>
-    input?.length > 50 ? `${input.substring(0, 50)}...` : input
   return (
     <div className="item-list">
       {items.map((item) => (
@@ -15,7 +13,11 @@ export const Listing = ({items}) => {
             </a>
           </div>
           <div className="item-details">
-            <p className="item-title">{truncate(item.title)}</p>
+            <p className="item-title">
+              {item.title?.length > 50
+                ? `${item.title.substring(0, 50)}...`
+                : item.title}
+            </p>
             <p className="item-price">
               {item.currency_code === 'USD'
                 ? '$'
